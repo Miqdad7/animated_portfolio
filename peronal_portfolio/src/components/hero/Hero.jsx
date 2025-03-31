@@ -16,13 +16,14 @@ const Hero = () => {
             <h2>Web,ML,AI Enthusiast</h2>
             <p>currently pursuing integrated M.sc in computer science with specialization in AI and ML</p>
             <div className="awardList">
-                <img src="award1.png" alt="" />
-                <img src="award2.png" alt="" />
+                
+                <a href="/instagram.com"><img src="/instagram.png" alt="" /></a>
+                <a href="/facebook.com"><img src="/facebook.png" alt="" /></a>
                 <img src="award3.png" alt="" />
             </div>
         </div>
         {/* scroll svg */}
-        <a href="#services">
+        <a href="#services" className="scroll">
             <svg
                 width="50px"
                 height="50px"
@@ -56,6 +57,9 @@ const Hero = () => {
             <a href="/">
                 <img src="/linkedin.png" alt="" />
             </a>
+            <div className="followTextContainer">
+                <div className="followText">FOLLOW ME</div>
+            </div>
         </div>
         {/* bubble*/}
         <Speech/>
@@ -98,6 +102,12 @@ const Hero = () => {
                 </div>
             </div>
         </a>
+      </div>
+      <div className="bg">
+        {/* 3D*/}
+        <div className="hImg">
+            <img src="miqdad.png" alt="" />
+        </div>
       </div>
     </div>
   )
