@@ -1,29 +1,64 @@
 import React from 'react';
 import "./hero.css";
 import Speech from './Speech';
+import {animate, motion, stagger} from "motion/react";
+import Shape from './Shape';
+import { Suspense } from 'react';
+import { Canvas } from "@react-three/fiber";
+
+const awardVariants={
+    initial:{
+        x:-100,
+        opacity:0,
+    },
+    animate:{
+        x:0,
+        opacity:1,
+        transition:{
+            duration:1,
+            staggerChildren:0.2,
+        }
+    }
+}
+
+const followVariants={
+    initial:{
+        y:-100,
+        opacity:0,
+    },
+    animate:{
+        y:0,
+        opacity:1,
+        transition:{
+            duration:1,
+            staggerChildren:0.2,
+        }
+    }
+}
+
 const Hero = () => {
   return (
     <div className="hero">
       <div className="hSection left">
         {/* Title */}
-        <h1 className="hTitle">
+        <motion.h1 initial={{y:-100,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:1}} className="hTitle">
             Hey There,
             <br />
             <span>I'm Miqdad!</span>
-        </h1>
+        </motion.h1>
         {/* social media links */}
-        <div className="awards">
-            <h2>Web,ML,AI Enthusiast</h2>
-            <p>currently pursuing integrated M.sc in computer science with specialization in AI and ML</p>
-            <div className="awardList">
+        <motion.div variants={awardVariants} initial="initial" animate="animate" className="awards">
+            <motion.h2 variants={awardVariants}>Web,ML,AI Enthusiast</motion.h2>
+            <motion.p variants={awardVariants}>currently pursuing integrated M.sc in computer science with specialization in AI and ML</motion.p>
+            <motion.div variants={awardVariants} className="awardList">
                 
-                <a href="/instagram.com"><img src="/instagram.png" alt="" /></a>
-                <a href="/facebook.com"><img src="/facebook.png" alt="" /></a>
-                <img src="award3.png" alt="" />
-            </div>
-        </div>
+                <a href="https://github.com/Miqdad7"><motion.img variants={awardVariants} src="/github.jpg" alt="" /></a>
+                <a href="https://www.linkedin.com/in/muhammad-miqdad-10072a260/"><motion.img variants={awardVariants} src="/linkedin.png" alt="" /></a>
+                
+            </motion.div>
+        </motion.div>
         {/* scroll svg */}
-        <a href="#services" className="scroll">
+        <motion.a animate={{y:[0,5],opacity:[0,1,0]}} transition={{repeat:Infinity,duration:4,ease:"easeInOut",}} href="#services" className="scroll">
             <svg
                 width="50px"
                 height="50px"
@@ -36,31 +71,33 @@ const Hero = () => {
                     stroke="white"
                     strokeWidth="1"
                 />
-                <path
+                <motion.path
+                  animate={{y:[0,5]}}
+                  transition={{repeat:Infinity,duration:4,ease:"easeInOut",}}
                     d="M12 5V8"
                     stroke="white"
                     strokeWidth="1"
                     strokeLinecap="round"
                 />
             </svg>
-        </a>
+        </motion.a>
       </div>
       <div className="hSection right">
         {/* Follow */}
-        <div className="follow">
-            <a href="/">
+        <motion.div variants={followVariants} initial="initial" animate="animate" className="follow">
+            <motion.a variants={followVariants} href="https://www.instagram.com/m_i_q_d_a_d?igsh=b2p1ZHRmM200dzBs">
                 <img src="/instagram.png" alt="" />
-            </a>
-            <a href="/">
+            </motion.a>
+            <motion.a variants={followVariants} href="https://www.facebook.com/share/1DqsCk6HKX/">
                 <img src="/facebook.png" alt="" />
-            </a>
-            <a href="/">
-                <img src="/linkedin.png" alt="" />
-            </a>
-            <div className="followTextContainer">
+            </motion.a>
+            <motion.a variants={followVariants} href="https://x.com/Muhamma09874832?t=fpylTSVs6bk-hLJVu6gHWA&s=09">
+                <img src="/x.png" alt="" />
+            </motion.a>
+            <motion.div variants={followVariants} className="followTextContainer">
                 <div className="followText">FOLLOW ME</div>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
         {/* bubble*/}
         <Speech/>
         {/* Certificate */}
@@ -68,8 +105,8 @@ const Hero = () => {
 
         </div>
         {/* contact button */}
-        <a href="/#contact" className="contactLink">
-            <div className="contactButton">
+        <motion.a href="/#contact" className="contactLink" animate={{x:[200,0],opacity:[0,1]}} transition={{duration:2,}}>
+            <motion.div animate={{rotate:[0,360]}} transition={{duration:10,repeat:Infinity,ease:"linear",}} className="contactButton">
                 <svg viewBox="0 0 200 200" width="150" height="150">
                     <circle cx="100" cy="100" r="90" fill="pink" />
                     <path
@@ -100,11 +137,16 @@ const Hero = () => {
                         <polyline points="9 6 18 6 18 15" />
                     </svg>
                 </div>
-            </div>
-        </a>
+            </motion.div>
+        </motion.a>
       </div>
       <div className="bg">
         {/* 3D*/}
+        <Canvas>
+          <Suspense fallback="loading...">
+            <Shape />
+          </Suspense>
+        </Canvas>
         <div className="hImg">
             <img src="miqdad.png" alt="" />
         </div>
