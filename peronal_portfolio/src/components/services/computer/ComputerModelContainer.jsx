@@ -16,3 +16,4 @@ const ComputerModelContainer = () => {
     </Canvas>
   );
 };
+export default ComputerModelContainer;

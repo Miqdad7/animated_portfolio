@@ -1,4 +1,6 @@
 import ComputerModelContainer from "./computer/ComputerModelContainer";
+import CameraModelContainer from "./camera/CameraModelContainer";
+import RoboModelContainer from "./robo/RoboModelContainer";
 import Counter from "./Counter";
 import "./services.css";
 import { motion, useInView } from "motion/react";
@@ -40,19 +42,19 @@ const services = [
     id: 1,
     img: "/service1.png",
     title: "Web Development",
-    counter: 35,
+    counter: 10,
   },
   {
     id: 2,
     img: "/service1.png",
-    title: "Product Design",
-    counter: 23,
+    title: "Video Editing",
+    counter: 8,
   },
   {
     id: 3,
     img: "/service1.png",
-    title: "Branding",
-    counter: 46,
+    title: "ML Projects",
+    counter: 5,
   },
 ];
 
@@ -93,17 +95,17 @@ const Services = () => {
           ))}
         </motion.div>
         <div className="counterList">
-          <Counter from={0} to={104} text="Projects Completed" />
-          <Counter from={0} to={72} text="Happy Clients" />
+          <Counter from={0} to={23} text="Projects Completed" />
+          <Counter from={0} to={5} text="Happy Clients" />
         </div>
       </div>
       <div className="sSection right">
         {currentServiceId === 1 ? (
           <ComputerModelContainer />
         ) : currentServiceId === 2 ? (
-          <ComputerModelContainer />
+          <CameraModelContainer />
         ) : (
-          <ComputerModelContainer />
+          <RoboModelContainer />
         )}
       </div>
     </div>
